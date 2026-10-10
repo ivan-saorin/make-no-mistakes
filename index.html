@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>makenomistakes.si</title>
+<meta name="description" content="Move everything to the cloud. Make no mistakes! Instructions, followed to the letter.">
+<meta name="theme-color" content="#99C1DF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2399C1DF'/%3E%3Cpath fill='%23F3E8E1' d='M9 23a5 5 0 0 1 .6-9.96A6.5 6.5 0 0 1 22 12.5a5.25 5.25 0 0 1 1 10.5z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&amp;display=swap">
+<style>
+/* Every colour is the felt picture's own: its sky, its cloud wool, the navy and the orange of its lettering,
+   the grey of its stitches. */
+:root{--mnm-sky:#99C1DF;--mnm-wool:#F3E8E1;--mnm-navy:#031737;--mnm-orange:#F39A06;--mnm-stitch:#A0928D;--mnm-edge:clamp(16px,6vw,96px)}
+body{margin:0;background:var(--mnm-sky);color:var(--mnm-navy);font-family:'Fredoka','Nunito','Trebuchet MS',sans-serif}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* The hero is the picture, edge to edge. Its lettering is felted into it and cannot reflow, so each shape of window
+   gets its own framing of the same picture (<picture> below; site/tools/mnm_hero.py cuts them). */
+.mnm-hero{position:relative}
+.mnm-art{display:block;width:100%;height:auto;aspect-ratio:1140/768;object-fit:cover;background:#B9D2E6}
+.mnm-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 40px;padding:clamp(18px,2vw,30px) var(--mnm-edge) clamp(28px,4vw,56px)}
+.mnm-done{margin:0;max-width:44ch;font-size:clamp(19px,1.1vw + 12px,28px);line-height:1.3;font-weight:400;text-wrap:balance}
+
+/* The way to the wallpaper is a felt patch like the one in the picture: wool, a row of stitches, navy letters. */
+.mnm-get{display:inline-block;padding:5px;border-radius:999px;background:var(--mnm-wool);color:var(--mnm-navy);font-weight:600;font-size:clamp(17px,.5vw + 13px,21px);line-height:1;text-decoration:none;box-shadow:0 2px 0 rgba(3,23,55,.22),0 10px 22px -12px rgba(3,23,55,.45);transition:transform .15s ease,box-shadow .15s ease}
+.mnm-get span{display:block;padding:13px 26px 14px;border:2px dashed var(--mnm-stitch);border-radius:999px;transition:border-color .15s ease}
+.mnm-get:hover{transform:translateY(-2px);box-shadow:0 4px 0 rgba(3,23,55,.22),0 16px 26px -12px rgba(3,23,55,.5)}
+.mnm-get:hover span{border-color:var(--mnm-orange)}
+.mnm-get:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(3,23,55,.22)}
+.mnm-get:focus-visible{outline:3px solid var(--mnm-navy);outline-offset:4px}
+
+@media (max-width:640px){.mnm-get{display:block;width:100%;text-align:center}}
+/* tablets: robot, lettering, man and church */
+@media (min-width:641px){.mnm-art{aspect-ratio:1600/768}}
+/* wide windows: the whole picture, 8:3, and the hero is the first screen: the line and the patch sit in the middle
+   of what is left under the picture. If the window is too low for the whole picture and the bar, rows come off its
+   cloud bank first (the man stands 118 rows above the bottom edge, the birds 40 under the top). */
+@media (min-width:1101px){
+  .mnm-hero{display:flex;flex-direction:column;min-height:100svh}
+  .mnm-art{aspect-ratio:8/3;max-height:calc(100svh - 8rem);object-position:50% 25%}
+  .mnm-bar{flex:1;padding-block:clamp(18px,2vw,30px)}
+}
+/* very wide windows (32:9 screens): the wallpaper's own framing. There is no height to spare for a bar, so the line
+   and the patch are sewn onto the picture's lower corners, over the cloud bank; if rows must go, they go from the
+   top (the man's shoes stand on the bottom edge). */
+@media (min-width:1101px) and (min-aspect-ratio:14/5){
+  .mnm-hero{display:block;min-height:0}
+  .mnm-art{aspect-ratio:32/9;max-height:100svh;object-position:50% 100%}
+  .mnm-bar{position:absolute;left:0;right:0;bottom:0;padding-block:0 clamp(12px,2vh,26px)}
+  .mnm-done{max-width:none;padding:9px 20px 10px;border-radius:999px;background:var(--mnm-wool);font-size:clamp(16px,1.2vh + 8px,24px);line-height:1.15}
+}
+@media (prefers-reduced-motion:reduce){.mnm-get,.mnm-get span{transition:none}.mnm-get:hover,.mnm-get:active{transform:none}}
+</style>
+</head>
+<body>
+<main>
+
+<section class="mnm-hero" aria-labelledby="mnm-line">
+<h1 id="mnm-line" class="sr-only">Move everything to the cloud. Make no mistakes!</h1>
+<picture>
+<source media="(min-width: 1101px) and (min-aspect-ratio: 14/5)" srcset="img/hero-xwide-2560.webp 2560w, img/hero-xwide-3840.webp 3840w, img/hero-xwide-5120.webp 5120w" sizes="100vw" width="5120" height="1440">
+<source media="(min-width: 1101px)" srcset="img/hero-wide-1280.webp 1280w, img/hero-wide-1920.webp 1920w, img/hero-wide-2560.webp 2560w, img/hero-wide-3840.webp 3840w" sizes="100vw" width="3840" height="1440">
+<source media="(min-width: 641px)" srcset="img/hero-mid-1200.webp 1200w, img/hero-mid-1800.webp 1800w, img/hero-mid-2400.webp 2400w" sizes="100vw" width="3000" height="1440">
+<img class="mnm-art" src="img/hero-small-960.webp" srcset="img/hero-small-640.webp 640w, img/hero-small-960.webp 960w, img/hero-small-1280.webp 1280w" sizes="100vw" width="2138" height="1440" fetchpriority="high" decoding="async" alt="A scene in needle felt: a smiling felt robot ties server racks to the clouds with coloured yarn, and dozens already hang in the sky. A small man in a tie holds an unplugged cable and looks up. The line is felted across the sky, with makenomistakes.si on a patch under it.">
+</picture>
+<div class="mnm-bar">
+<p class="mnm-done">Done. Everything is in the cloud. No mistakes were made.</p>
+<!-- Into xxlwallpapers.com the way imsorrydave.si goes in (its README, "The panic domains"): the secret section's own
+     address, and who sent the visitor, said twice: ?via= in the address, and the referrer (so never rel="noreferrer"). -->
+<a class="mnm-get" href="https://xxlwallpapers.com/make-no-mistakes/?via=makenomistakes" target="_blank" rel="noopener" referrerpolicy="origin"><span>Get the wallpaper</span></a>
+</div>
+</section>
+
+</main>
+</body>
+</html>
